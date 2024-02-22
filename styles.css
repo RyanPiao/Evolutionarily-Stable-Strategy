@@ -18,20 +18,6 @@
     box-sizing: border-box;
 }
 
-.cell {
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ddd;
-}
-
-.grid-block {
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ccc;
-    display: inline-block;
-    margin: -1px;
-}
-
 .green {
     background-color: green;
 }
