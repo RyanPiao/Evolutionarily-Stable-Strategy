@@ -1,3 +1,4 @@
+/* Add any additional styles you need here */
 #app {
     margin: 20px;
 }
@@ -6,24 +7,15 @@
     margin-bottom: 20px;
 }
 
-#payoffMatrix div {
-    margin-bottom: 5px;
-}
-
-#payoffMatrix input {
-    margin-right: 5px;
-    width: 50px;
-}
-
 #grid {
     display: grid;
-    grid-template-columns: repeat(20, 20px); /* Adjust the number of columns based on your grid size */
-    margin-top: 20px;
+    grid-template-columns: repeat(20, 20px); /* 20 cells across */
+    grid-template-rows: repeat(20, 20px); /* 20 cells down */
+    gap: 1px; /* space between cells */
 }
 
 .cell {
     width: 20px;
     height: 20px;
     border: 1px solid #ddd;
-    display: inline-block;
 }
