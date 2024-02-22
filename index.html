@@ -7,13 +7,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="controls">
-        <label>Red Payoff: <input type="number" id="redPayoff" value="1"></label>
-        <label>Green Payoff: <input type="number" id="greenPayoff" value="0"></label>
-        <label>Initial Red Ratio (%): <input type="number" id="initialRedRatio" value="50"></label>
-        <button onclick="initialize()">Initialize</button>
-        <button onclick="nextGeneration()">Next Generation</button>
+    <div id="matrix-inputs">
+        <label>Matrix Size:
+            <select id="matrixSize" onchange="createMatrixInputs()">
+                <option value="2">2x2</option>
+                <option value="3">3x3</option>
+                <option value="4">4x4</option>
+            </select>
+        </label>
+        <div id="payoffMatrix"></div>
     </div>
+    <button onclick="initialize()">Initialize</button>
+    <button onclick="nextGeneration()">Next Generation</button>
     <div id="grid"></div>
     <script src="script.js"></script>
 </body>
