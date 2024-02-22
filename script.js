@@ -1,6 +1,24 @@
-// Assuming this is script.js
+const matrixSizeElement = document.getElementById('matrixSize');
+const matrixInputsContainer = document.getElementById('matrix-inputs');
+const gridContainer = document.getElementById('grid');
+const gridSize = 20;
+let grid = [];
+
 function createMatrixInputs() {
-    // Function to create matrix inputs based on selected size
+    const size = parseInt(matrixSizeElement.value, 10);
+    matrixInputsContainer.innerHTML = ''; // Clear the previous matrix inputs
+
+    for (let i = 0; i < size; i++) {
+        const rowDiv = document.createElement('div');
+        for (let j = 0; j < size; j++) {
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.id = `payoff-${i}-${j}`;
+            input.placeholder = `S${i+1},S${j+1}`;
+            rowDiv.appendChild(input);
+        }
+        matrixInputsContainer.appendChild(rowDiv);
+    }
 }
 
 function updateRatioDisplay(value) {
