@@ -1,22 +1,49 @@
-// Initialize the population grid with strategies
-let population = initializePopulation(strategyRatios, gridSize);
+const gridElement = document.getElementById('grid');
+const gridSize = 20;
+let grid = [];
 
-// Function to run the simulation for a set number of generations
-function runSimulation(numGenerations) {
-  for (let i = 0; i < numGenerations; i++) {
-    population = runGeneration(population, payoffMatrix);
-    renderPopulation(population); // Update the visual representation
-  }
+function createCell(color) {
+    const cell = document.createElement('div');
+    cell.classList.add('cell', color);
+    return cell;
 }
 
-// Function to simulate a single generation
-function runGeneration(population, payoffMatrix) {
-  let newPopulation = [...population];
-  // Logic to simulate interactions and update strategies
-  return newPopulation;
+function initialize() {
+    gridElement.innerHTML = ''; // Clear the grid
+    grid = [];
+    const redPayoff = parseFloat(document.getElementById('redPayoff').value);
+    const greenPayoff = parseFloat(document.getElementById('greenPayoff').value);
+    const initialRedRatio = parseFloat(document.getElementById('initialRedRatio').value) / 100;
+
+    for (let i = 0; i < gridSize; i++) {
+        const row = [];
+        for (let j = 0; j < gridSize; j++) {
+            const isRed = Math.random() < initialRedRatio;
+            const cell = createCell(isRed ? 'red' : 'green');
+            gridElement.appendChild(cell);
+            row.push({ element: cell, isRed: isRed, redPayoff: redPayoff, greenPayoff: greenPayoff });
+        }
+        grid.push(row);
+    }
 }
 
-// Function to render the population grid to the webpage
-function renderPopulation(population) {
-  // Logic to update the webpage with the new grid state
+function nextGeneration() {
+    grid.forEach((row, i) => {
+        row.forEach((cell, j) => {
+            // Simple rule: if the red payoff is higher, turn the cell red, otherwise green
+            if (cell.redPayoff > cell.greenPayoff) {
+                cell.isRed = true;
+                cell.element.classList.add('red');
+                cell.element.classList.remove('green');
+            } else if (cell.redPayoff < cell.greenPayoff) {
+                cell.isRed = false;
+                cell.element.classList.add('green');
+                cell.element.classList.remove('red');
+            }
+            // You can add more complex logic here for interaction with neighbors
+        });
+    });
 }
+
+// Initialize with default values on load
+initialize();
