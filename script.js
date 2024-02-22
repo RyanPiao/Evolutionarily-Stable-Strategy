@@ -12,7 +12,7 @@ function createMatrixInputs() {
         const rowDiv = document.createElement('div');
         for (let j = 0; j < size; j++) {
             const input = document.createElement('input');
-            input.type = 'number';
+            input.type = 'text';
             input.id = `payoff-${i}-${j}`;
             input.placeholder = `S${i+1},S${j+1}`;
             rowDiv.appendChild(input);
