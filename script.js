@@ -1,49 +1,55 @@
 const gridElement = document.getElementById('grid');
+const payoffMatrixElement = document.getElementById('payoffMatrix');
+const matrixSizeElement = document.getElementById('matrixSize');
 const gridSize = 20;
 let grid = [];
+let payoffMatrix = [];
 
-function createCell(color) {
-    const cell = document.createElement('div');
-    cell.classList.add('cell', color);
-    return cell;
+function createMatrixInputs() {
+    const size = matrixSizeElement.value;
+    payoffMatrixElement.innerHTML = ''; // Clear the previous matrix
+
+    for (let i = 0; i < size; i++) {
+        const row = document.createElement('div');
+        for (let j = 0; j < size; j++) {
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.id = `payoff-${i}-${j}`;
+            input.placeholder = `S${i+1},S${j+1}`;
+            row.appendChild(input);
+        }
+        payoffMatrixElement.appendChild(row);
+    }
+}
+
+function getPayoffMatrix() {
+    const size = parseInt(matrixSizeElement.value, 10);
+    const matrix = [];
+
+    for (let i = 0; i < size; i++) {
+        const row = [];
+        for (let j = 0; j < size; j++) {
+            const value = parseFloat(document.getElementById(`payoff-${i}-${j}`).value);
+            row.push(isNaN(value) ? 0 : value);
+        }
+        matrix.push(row);
+    }
+
+    return matrix;
 }
 
 function initialize() {
     gridElement.innerHTML = ''; // Clear the grid
     grid = [];
-    const redPayoff = parseFloat(document.getElementById('redPayoff').value);
-    const greenPayoff = parseFloat(document.getElementById('greenPayoff').value);
-    const initialRedRatio = parseFloat(document.getElementById('initialRedRatio').value) / 100;
-
-    for (let i = 0; i < gridSize; i++) {
-        const row = [];
-        for (let j = 0; j < gridSize; j++) {
-            const isRed = Math.random() < initialRedRatio;
-            const cell = createCell(isRed ? 'red' : 'green');
-            gridElement.appendChild(cell);
-            row.push({ element: cell, isRed: isRed, redPayoff: redPayoff, greenPayoff: greenPayoff });
-        }
-        grid.push(row);
-    }
+    payoffMatrix = getPayoffMatrix();
+    // Initialize the grid with some logic based on payoffMatrix
+    // ...
 }
 
 function nextGeneration() {
-    grid.forEach((row, i) => {
-        row.forEach((cell, j) => {
-            // Simple rule: if the red payoff is higher, turn the cell red, otherwise green
-            if (cell.redPayoff > cell.greenPayoff) {
-                cell.isRed = true;
-                cell.element.classList.add('red');
-                cell.element.classList.remove('green');
-            } else if (cell.redPayoff < cell.greenPayoff) {
-                cell.isRed = false;
-                cell.element.classList.add('green');
-                cell.element.classList.remove('red');
-            }
-            // You can add more complex logic here for interaction with neighbors
-        });
-    });
+    // Logic to simulate the next generation based on payoffMatrix
+    // ...
 }
 
-// Initialize with default values on load
-initialize();
+// Create the initial 2x2 matrix inputs on load
+createMatrixInputs();
