@@ -6,19 +6,19 @@ let grid = [];
 let payoffMatrix = [];
 
 function createMatrixInputs() {
-    const size = matrixSizeElement.value;
+    const size = parseInt(matrixSizeElement.value, 10);
     payoffMatrixElement.innerHTML = ''; // Clear the previous matrix
 
     for (let i = 0; i < size; i++) {
-        const row = document.createElement('div');
+        const rowDiv = document.createElement('div');
         for (let j = 0; j < size; j++) {
             const input = document.createElement('input');
             input.type = 'number';
             input.id = `payoff-${i}-${j}`;
             input.placeholder = `S${i+1},S${j+1}`;
-            row.appendChild(input);
+            rowDiv.appendChild(input);
         }
-        payoffMatrixElement.appendChild(row);
+        payoffMatrixElement.appendChild(rowDiv);
     }
 }
 
@@ -38,12 +38,24 @@ function getPayoffMatrix() {
     return matrix;
 }
 
-function initialize() {
+function initializeGrid() {
     gridElement.innerHTML = ''; // Clear the grid
     grid = [];
+    for (let i = 0; i < gridSize; i++) {
+        const row = [];
+        for (let j = 0; j < gridSize; j++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            gridElement.appendChild(cell);
+            row.push(cell);
+        }
+        grid.push(row);
+    }
+}
+
+function initialize() {
     payoffMatrix = getPayoffMatrix();
-    // Initialize the grid with some logic based on payoffMatrix
-    // ...
+    initializeGrid();
 }
 
 function nextGeneration() {
@@ -53,3 +65,4 @@ function nextGeneration() {
 
 // Create the initial 2x2 matrix inputs on load
 createMatrixInputs();
+initializeGrid();
