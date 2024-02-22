@@ -20,25 +20,11 @@
         <div id="matrix-inputs">
             <!-- Payoff matrix inputs will be generated here by JavaScript -->
         </div>
-        <div>
-  <label for="s1_profile">Strategy s1:</label>
-  <input type="text" id="s1_profile" placeholder="Enter s1 value" />
-</div>
-<div>
-  <label for="s2_profile">Strategy s2:</label>
-  <input type="text" id="s2_profile" placeholder="Enter s2 value" />
-</div>
-<div>
-  <label for="initial_ratio_s1">Initial ratio for s1:</label>
-  <input type="number" id="initial_ratio_s1" placeholder="e.g., 0.5" step="any" />
-</div>
-<div>
-  <label for="initial_ratio_s2">Initial ratio for s2:</label>
-  <input type="number" id="initial_ratio_s2" placeholder="e.g., 0.5" step="any" />
-</div>
-<button id="initialize">Initialize</button>
-
+        <button id="initialize">Initialize</button>
         <button onclick="nextGeneration()">Next Generation</button>
+        <label for="green-ratio">Green Type Ratio:</label>
+        <input type="range" id="green-ratio" name="green-ratio" min="0" max="1" step="0.01" value="0.5" oninput="updateRatio(this.value);">
+        <span id="ratio-value">0.50</span>
         <div id="grid">
             <!-- Grid will be generated here by JavaScript -->
         </div>
