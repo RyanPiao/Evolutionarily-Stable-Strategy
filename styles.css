@@ -7,16 +7,8 @@
 }
 
 #grid {
-    display: grid;
-    grid-template-columns: repeat(20, 20px); /* 20 cells across */
-    grid-template-rows: repeat(20, 20px); /* 20 cells down */
-    gap: 1px; /* space between cells */
-}
-
-.cell {
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
 }
 
 .grid-row {
@@ -24,8 +16,8 @@
 }
 
 .grid-block {
-    width: 20px; /* or whatever size you want */
-    height: 20px; /* or whatever size you want */
+    width: 20px;
+    height: 20px;
     border: 1px solid #000;
 }
 
@@ -36,3 +28,4 @@
 .red {
     background-color: red;
 }
+
