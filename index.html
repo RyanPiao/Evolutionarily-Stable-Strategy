@@ -7,19 +7,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="matrix-inputs">
-        <label>Matrix Size:
-            <select id="matrixSize" onchange="createMatrixInputs()">
-                <option value="2">2x2</option>
-                <option value="3">3x3</option>
-                <option value="4">4x4</option>
-            </select>
-        </label>
-        <div id="payoffMatrix"></div>
+    <div id="app">
+        <div id="matrix-inputs">
+            <label>Matrix Size:
+                <select id="matrixSize" onchange="createMatrixInputs()">
+                    <option value="2">2x2</option>
+                    <option value="3">3x3</option>
+                    <option value="4">4x4</option>
+                </select>
+            </label>
+            <div id="payoffMatrix"></div>
+        </div>
+        <button onclick="initialize()">Initialize</button>
+        <button onclick="nextGeneration()">Next Generation</button>
+        <div id="grid"></div>
     </div>
-    <button onclick="initialize()">Initialize</button>
-    <button onclick="nextGeneration()">Next Generation</button>
-    <div id="grid"></div>
     <script src="script.js"></script>
 </body>
 </html>
