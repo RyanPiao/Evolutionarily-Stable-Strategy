@@ -1,12 +1,13 @@
+const gridElement = document.getElementById('grid');
+const payoffMatrixElement = document.getElementById('payoffMatrix');
 const matrixSizeElement = document.getElementById('matrixSize');
-const matrixInputsContainer = document.getElementById('matrix-inputs');
-const gridContainer = document.getElementById('grid');
 const gridSize = 20;
 let grid = [];
+let payoffMatrix = [];
 
 function createMatrixInputs() {
     const size = parseInt(matrixSizeElement.value, 10);
-    matrixInputsContainer.innerHTML = ''; // Clear the previous matrix inputs
+    payoffMatrixElement.innerHTML = ''; // Clear the previous matrix
 
     for (let i = 0; i < size; i++) {
         const rowDiv = document.createElement('div');
@@ -17,27 +18,44 @@ function createMatrixInputs() {
             input.placeholder = `S${i+1},S${j+1}`;
             rowDiv.appendChild(input);
         }
-        matrixInputsContainer.appendChild(rowDiv);
+        payoffMatrixElement.appendChild(rowDiv);
     }
 }
 
+function getPayoffMatrix() {
+    const size = parseInt(matrixSizeElement.value, 10);
+    const matrix = [];
+
+    for (let i = 0; i < size; i++) {
+        const row = [];
+        for (let j = 0; j < size; j++) {
+            const value = parseFloat(document.getElementById(`payoff-${i}-${j}`).value);
+            row.push(isNaN(value) ? 0 : value);
+        }
+        matrix.push(row);
+    }
+
+    return matrix;
+}
+
 function initializeGrid() {
-    gridContainer.innerHTML = ''; // Clear the grid
+    gridElement.innerHTML = ''; // Clear the grid
     grid = [];
     for (let i = 0; i < gridSize; i++) {
-        grid[i] = [];
+        const row = [];
         for (let j = 0; j < gridSize; j++) {
             const cell = document.createElement('div');
             cell.classList.add('cell');
-            gridContainer.appendChild(cell);
-            grid[i][j] = cell;
+            gridElement.appendChild(cell);
+            row.push(cell);
         }
+        grid.push(row);
     }
 }
 
 function initialize() {
-    createMatrixInputs(); // Call this function to create the matrix inputs
-    initializeGrid(); // Call this function to initialize the grid
+    payoffMatrix = getPayoffMatrix();
+    initializeGrid();
 }
 
 function nextGeneration() {
@@ -45,5 +63,6 @@ function nextGeneration() {
     // ...
 }
 
-// Initialize the matrix inputs and the grid when the page loads
-window.onload = initialize;
+// Create the initial 2x2 matrix inputs on load
+createMatrixInputs();
+initializeGrid();
