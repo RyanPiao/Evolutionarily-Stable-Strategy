@@ -44,24 +44,11 @@ function nextGeneration() {
     // Logic to simulate the next generation based on payoffMatrix
     // ...
 }
-document.getElementById('initialize').addEventListener('click', function() {
-    var s1Value = document.getElementById('s1_profile').value.trim();
-    var s2Value = document.getElementById('s2_profile').value.trim();
-    var initialRatioS1 = parseFloat(document.getElementById('initial_ratio_s1').value);
-    var initialRatioS2 = parseFloat(document.getElementById('initial_ratio_s2').value);
 
-    // Check if ratios add up to 1
-    if ((initialRatioS1 + initialRatioS2).toFixed(2) !== '1.00') {
-        alert('The sum of the ratios must equal 1.');
-        return;
-    }
-
-    // Now you can use s1Value, s2Value, initialRatioS1, and initialRatioS2 to initialize the matrix
-    // For example, you might store these in a global state or pass them to a function
-    console.log(s1Value, s2Value, initialRatioS1, initialRatioS2);
-
-    // Further code to initialize the matrix goes here
-});
+function updateRatio(value) {
+  document.getElementById('ratio-value').textContent = value;
+  // Additional JavaScript to handle the population ratio in your simulation
+}
 
 // Initialize the matrix inputs and the grid when the page loads
 window.onload = initialize;
