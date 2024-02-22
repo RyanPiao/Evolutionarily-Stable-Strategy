@@ -6,14 +6,7 @@
 #matrix-inputs {
     margin-bottom: 20px;
 }
-#payoffMatrix div {
-    margin-bottom: 5px;
-}
 
-#payoffMatrix input {
-    margin-right: 5px;
-    width: 50px;
-}
 #grid {
     display: flex;
     flex-direction: column;
