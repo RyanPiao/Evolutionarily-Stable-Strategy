@@ -13,21 +13,23 @@ function initializeGrid() {
     grid.innerHTML = ''; // Clear the grid first
     const gridSize = 20; // Set grid size to 20x20
 
-    for (let row = 0; row < gridSize; row++) {
-        const rowDiv = document.createElement('div');
-        rowDiv.className = 'grid-row'; // You should define this class in your CSS
+    let greenRatio = parseFloat(document.getElementById('green-ratio').value);
+    let gridSize = parseInt(document.getElementById('matrixSize').value);
 
-        for (let col = 0; col < gridSize; col++) {
-            const cellDiv = document.createElement('div');
-            cellDiv.className = 'grid-cell'; // You should define this class in your CSS
-            // Optionally set the initial color of the cell here, or add event listeners, etc.
-            rowDiv.appendChild(cellDiv);
+    for (let i = 0; i < gridSize; i++) {
+        for (let j = 0; j < gridSize; j++) {
+            let gridBlock = document.createElement('div');
+            gridBlock.className = 'grid-block';
+            // Assuming green blocks are represented by 1 and red blocks by 0
+            if (Math.random() < greenRatio) {
+                gridBlock.classList.add('green');
+            } else {
+                gridBlock.classList.add('red');
+            }
+            grid.appendChild(gridBlock);
         }
-
-        grid.appendChild(rowDiv);
     }
 }
-
 
 function nextGeneration() {
     // Function to process to the next generation based on current grid and inputs
