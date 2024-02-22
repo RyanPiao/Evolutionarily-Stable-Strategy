@@ -16,6 +16,7 @@
 #grid {
     display: flex;
     flex-direction: column;
+    gap: 1px; /* space between cells */
 }
 
 .grid-row {
@@ -34,9 +35,4 @@
 
 .red {
     background-color: red;
-}
-
-/* Add any additional styles you need here */
-#app {
-    margin: 20px;
 }
