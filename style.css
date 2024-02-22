@@ -1,19 +1,29 @@
+#app {
+    margin: 20px;
+}
+
+#matrix-inputs {
+    margin-bottom: 20px;
+}
+
+#payoffMatrix div {
+    margin-bottom: 5px;
+}
+
+#payoffMatrix input {
+    margin-right: 5px;
+    width: 50px;
+}
+
 #grid {
     display: grid;
-    grid-template-columns: repeat(20, 20px);
-    grid-template-rows: repeat(20, 20px);
+    grid-template-columns: repeat(20, 20px); /* Adjust the number of columns based on your grid size */
+    margin-top: 20px;
 }
+
 .cell {
     width: 20px;
     height: 20px;
     border: 1px solid #ddd;
-}
-.red {
-    background-color: red;
-}
-.green {
-    background-color: green;
-}
-#controls {
-    margin-bottom: 20px;
+    display: inline-block;
 }
