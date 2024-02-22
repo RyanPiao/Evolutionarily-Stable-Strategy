@@ -1,54 +1,35 @@
-const matrixSizeElement = document.getElementById('matrixSize');
-const matrixInputsContainer = document.getElementById('matrix-inputs');
-const gridContainer = document.getElementById('grid');
-const gridSize = 20;
-let grid = [];
-
+// Assuming this is script.js
 function createMatrixInputs() {
-    const size = parseInt(matrixSizeElement.value, 10);
-    matrixInputsContainer.innerHTML = ''; // Clear the previous matrix inputs
+    // Function to create matrix inputs based on selected size
+}
 
-    for (let i = 0; i < size; i++) {
-        const rowDiv = document.createElement('div');
-        for (let j = 0; j < size; j++) {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.id = `payoff-${i}-${j}`;
-            input.placeholder = `S${i+1},S${j+1}`;
-            rowDiv.appendChild(input);
-        }
-        matrixInputsContainer.appendChild(rowDiv);
-    }
+function updateRatioDisplay(value) {
+    document.getElementById('ratio-value').textContent = value;
+    initializeGrid(); // Call initializeGrid whenever the ratio is updated
 }
 
 function initializeGrid() {
-    gridContainer.innerHTML = ''; // Clear the grid
-    grid = [];
+    let grid = document.getElementById('grid');
+    grid.innerHTML = ''; // Clear the grid first
+
+    let greenRatio = parseFloat(document.getElementById('green-ratio').value);
+    let gridSize = parseInt(document.getElementById('matrixSize').value);
+
     for (let i = 0; i < gridSize; i++) {
-        grid[i] = [];
         for (let j = 0; j < gridSize; j++) {
-            const cell = document.createElement('div');
-            cell.classList.add('cell');
-            gridContainer.appendChild(cell);
-            grid[i][j] = cell;
+            let gridBlock = document.createElement('div');
+            gridBlock.className = 'grid-block';
+            // Assuming green blocks are represented by 1 and red blocks by 0
+            if (Math.random() < greenRatio) {
+                gridBlock.classList.add('green');
+            } else {
+                gridBlock.classList.add('red');
+            }
+            grid.appendChild(gridBlock);
         }
     }
 }
 
-function initialize() {
-    createMatrixInputs(); // Call this function to create the matrix inputs
-    initializeGrid(); // Call this function to initialize the grid
-}
-
 function nextGeneration() {
-    // Logic to simulate the next generation based on payoffMatrix
-    // ...
+    // Function to process to the next generation based on current grid and inputs
 }
-
-function updateRatio(value) {
-  document.getElementById('ratio-value').textContent = value;
-  // Additional JavaScript to handle the population ratio in your simulation
-}
-
-// Initialize the matrix inputs and the grid when the page loads
-window.onload = initialize;
