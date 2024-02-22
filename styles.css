@@ -7,11 +7,11 @@
     margin-bottom: 20px;
 }
 
-#payoffMatrix div {
+#matrix-inputs div {
     margin-bottom: 5px;
 }
 
-#payoffMatrix input {
+#matrix-inputs input {
     margin-right: 5px;
     width: 50px;
 }
