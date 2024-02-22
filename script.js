@@ -1,34 +1,28 @@
-const matrixSizeElement = document.getElementById('matrixSize');
-const matrixInputsContainer = document.getElementById('matrix-inputs');
-
 function createMatrixInputs() {
-    const size = parseInt(matrixSizeElement.value, 10);
-    matrixInputsContainer.innerHTML = ''; // Clear the previous matrix inputs
-
-    for (let i = 0; i < size; i++) {
-        const rowDiv = document.createElement('div');
-        for (let j = 0; j < size; j++) {
-            const input = document.createElement('input');
-            input.type = 'number';
-            input.id = `payoff-${i}-${j}`;
-            input.placeholder = `S${i+1},S${j+1}`;
-            rowDiv.appendChild(input);
+    var matrixSize = document.getElementById('matrixSize').value;
+    var matrixInputs = document.getElementById('matrix-inputs');
+    matrixInputs.innerHTML = '';
+    for (var i = 0; i < matrixSize; i++) {
+        for (var j = 0; j < matrixSize; j++) {
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = i + ',' + j;
+            matrixInputs.appendChild(input);
         }
-        matrixInputsContainer.appendChild(rowDiv);
+        matrixInputs.appendChild(document.createElement('br'));
     }
 }
 
 function updateRatioDisplay(value) {
     document.getElementById('ratio-value').textContent = value;
-    initializeGrid(); // Call initializeGrid whenever the ratio is updated
 }
 
 function initializeGrid() {
     let grid = document.getElementById('grid');
-    grid.innerHTML = ''; // Clear the grid first
+    grid.innerHTML = '';
 
     let greenRatio = parseFloat(document.getElementById('green-ratio').value);
-    let gridSize = 20; // Set gridSize to 20 for a 20x20 grid
+    let gridSize = 20;
 
     for (let i = 0; i < gridSize; i++) {
         let row = document.createElement('div');
@@ -47,7 +41,13 @@ function initializeGrid() {
     }
 }
 
-
 function nextGeneration() {
     // Function to process to the next generation based on current grid and inputs
+    // Placeholder for the function to implement
 }
+
+// Initialize matrix inputs on load
+window.onload = function() {
+    createMatrixInputs();
+    initializeGrid();
+};
