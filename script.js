@@ -1,8 +1,5 @@
 const matrixSizeElement = document.getElementById('matrixSize');
 const matrixInputsContainer = document.getElementById('matrix-inputs');
-const gridContainer = document.getElementById('grid');
-const gridSize = 20;
-let grid = [];
 
 function createMatrixInputs() {
     const size = parseInt(matrixSizeElement.value, 10);
