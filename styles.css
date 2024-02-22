@@ -7,15 +7,19 @@
     margin-bottom: 20px;
 }
 
+#grid {
+    display: flex;
+    flex-direction: column;
+}
+
 .grid-row {
     display: flex;
 }
 
-.grid-cell {
-    width: 20px; /* or any other size */
-    height: 20px; /* or any other size */
+.grid-block {
+    width: 20px; /* or whatever size you want */
+    height: 20px; /* or whatever size you want */
     border: 1px solid #000;
-    box-sizing: border-box;
 }
 
 .green {
@@ -25,6 +29,7 @@
 .red {
     background-color: red;
 }
+
 /* Add any additional styles you need here */
 #app {
     margin: 20px;
